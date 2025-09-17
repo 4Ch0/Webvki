@@ -9,7 +9,7 @@ export default [
   {
     ignores: ["**/node_modules/*", "**/.next/*", "**/.cache/*"], // Add common ignore patterns
   },
-  {
+  {npm run dev
     files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
       "@stylistic": stylistic,
