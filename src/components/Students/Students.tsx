@@ -11,10 +11,7 @@ const Students = (): React.ReactElement => {
     <div className={styles.Students}>
       {students.map((student: StudentsInterface) => (
         <h2 key={student.id}>
-          {student.first_name}
-          {student.last_name}
-          {student.middle_name}
-          {student.groupId}
+          {student.last_name} {student.first_name}{student.middle_name ? ` ${student.middle_name}` : ''}
         </h2>
       ))}
     </div>

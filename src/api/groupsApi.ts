@@ -2,7 +2,9 @@ import type GroupInterface from '@/types/GroupInterface';
 
 export const getGroupsApi = async (): Promise<GroupInterface[]> => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}groups`);
+    const apiBase = process.env.NEXT_PUBLIC_API
+      || (typeof window !== 'undefined' ? '/api/' : 'http://localhost:3000/api/');
+    const response = await fetch(`${apiBase}groups`);
 
     if (!response.ok) {
       throw new Error(`Ошибка HTTP: ${response.status}${response.statusText}`);
