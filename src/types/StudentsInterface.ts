@@ -1,12 +1,9 @@
-import { LargeNumberLike } from "crypto";
-
 interface StudentsInterface {
-  id:number;
-  first_name: string;
-  last_name: string;
-  middle_name:string;
-  groupId:number;
-
+  id: number;
+  firstName: string;
+  lastName: string;
+  middleName: string;
+  isDeleted?: boolean;
 };
 
 export default StudentsInterface;
