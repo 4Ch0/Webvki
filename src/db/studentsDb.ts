@@ -15,7 +15,16 @@ export const getStudentsDb = async (): Promise<StudentsInterface[]> => {
         db.close();
         return;
       }
-      resolve(rows);
+      const mapped = (rows as any[]).map((row) => ({        
+          id: row.id,
+          firstName: row.first_name,
+          lastName: row.last_name,
+          middleName: row.middle_name,
+          isDeleted: Boolean(row.isDeleted) 
+          && row.isDeleted !== 0,      
+        }));      
+      resolve(mapped);
+
       db.close();
     });
   });

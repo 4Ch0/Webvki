@@ -5,9 +5,11 @@ interface Params {
   params: { id: number };
 }
 
-export async function DELETE(req: NextApiRequest, { params }: Params): Promise<Response> {
-  const p = await params;
-  const studentId = await p.id;
+export async function DELETE(
+  _req: Request,
+  { params }: { params: { id: string } }
+): Promise<Response> {
+  const studentId = Number.parseInt(params.id, 10);
   const deletedStudentId = await deleteStudentDb(studentId);
 
   return new Response(JSON.stringify({ deletedStudentId }), {

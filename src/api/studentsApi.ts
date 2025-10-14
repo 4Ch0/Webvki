@@ -20,7 +20,9 @@ export const getStudentsApi = async (): Promise<StudentsInterface[]> => {
 
 export const deleteStudentApi = async (studentId: number): Promise<number> => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}students/${studentId}`, {
+    const apiBase = process.env.NEXT_PUBLIC_API
+      || (typeof window !== 'undefined' ? '/api/' : 'http://localhost:3000/api/');
+    const response = await fetch(`${apiBase}students/${studentId}`, {
       method: 'DELETE',
     });
 
