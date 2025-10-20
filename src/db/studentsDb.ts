@@ -42,6 +42,33 @@ export const getStudentsDb = async (): Promise<StudentsInterface[]> => {
   return students as StudentsInterface[];
 };
 
+export const addStudentDb = async (student: Omit<StudentsInterface, 'id'>): Promise<StudentsInterface> => {
+  const db = new sqlite3.Database(process.env.DB ?? './db/vki-web.db');
+
+  return new Promise((resolve, reject) => {
+    const sql = 'INSERT INTO student (firstName, lastName, middleName, groupId) VALUES (?, ?, ?, ?)';
+    db.run(sql, [student.firstName, student.lastName, student.middleName, student.groupId], function(err) {
+      if (err) {
+        console.error('Error adding student:', err);
+        reject(err);
+        db.close();
+        return;
+      }
+      
+      // Возвращаем созданного студента с новым ID
+      const newStudent: StudentsInterface = {
+        id: this.lastID,
+        firstName: student.firstName,
+        lastName: student.lastName,
+        middleName: student.middleName,
+        groupId: student.groupId
+      };
+      
+      resolve(newStudent);
+      db.close();
+    });
+  });
+};
 export const deleteStudentDb = async (studentId: number): Promise<number> => {
   const db = new sqlite3.Database(process.env.DB ?? './db/vki-web.db');
 

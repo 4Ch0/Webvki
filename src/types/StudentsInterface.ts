@@ -4,6 +4,8 @@ interface StudentsInterface {
   lastName: string;
   middleName: string;
   isDeleted?: boolean;
+  groupId: number;
+  uuid?: string;
 };
 
 export default StudentsInterface;
