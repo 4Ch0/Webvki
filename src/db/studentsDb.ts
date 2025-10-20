@@ -46,7 +46,7 @@ export const addStudentDb = async (student: Omit<StudentsInterface, 'id'>): Prom
   const db = new sqlite3.Database(process.env.DB ?? './db/vki-web.db');
 
   return new Promise((resolve, reject) => {
-    const sql = 'INSERT INTO student (firstName, lastName, middleName, groupId) VALUES (?, ?, ?, ?)';
+    const sql = 'INSERT INTO student (first_name, last_name, middle_name, groupId) VALUES (?, ?, ?, ?)';
     db.run(sql, [student.firstName, student.lastName, student.middleName, student.groupId], function(err) {
       if (err) {
         console.error('Error adding student:', err);
