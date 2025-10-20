@@ -14,7 +14,9 @@
 
 3) Установить npm пакеты:
     ```
+    npm i uuid
     npm i
+    npm i -D @types/uuid
     ```
 
 4) Запустить проект:
